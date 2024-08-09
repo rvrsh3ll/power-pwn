@@ -1,5 +1,21 @@
+<div align="center">
+	<p>
+		<sup>Maintained by:</sup>
+		<br>
+		<br>
+		<a href="https://www.zenity.io">
+			<img src="/zenity_logo.svg"/>
+		</a>
+        <p>
+        Empower your business, not the adversaries.
+        </p>
+	</p>
+	<hr>
+</div>
+
 # Power Pwn
 
+[![Black Hat](https://img.shields.io/badge/Black%20Hat-USA%202024-blue)](https://www.toolswatch.org)
 [![SecTor 23](https://img.shields.io/badge/SecTor-23-red)](https://www.blackhat.com/sector/2023/arsenal/schedule/index.html#entraid-guest-to-corp-data-dump-with-powerpwn-36105)
 [![Black Hat](https://img.shields.io/badge/Black%20Hat-USA%202023-blue)](https://www.toolswatch.org)
 [![DEFCON30](https://img.shields.io/badge/DEFCON-30-8A2BE2)](https://forum.defcon.org/node/241932)
@@ -8,7 +24,7 @@
 [![twitter](https://img.shields.io/twitter/follow/mbrg0?icon=twitter&style=social&label=Follow)](https://twitter.com/intent/follow?screen_name=mbrg0)
 [![email me](https://img.shields.io/badge/michael.bargury-owasp.org-red?logo=Gmail)](mailto:michael.bargury@owasp.org)
 
-Power Pwn is an offensive and defensive security toolset for Microsoft Power Platform.
+Power Pwn is an offensive security toolset for Microsoft 365.
 
 Install with `pip install powerpwn`.
 

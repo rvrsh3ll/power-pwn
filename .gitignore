@@ -150,3 +150,5 @@ tokens.json
 *.zip
 .dump
 node_modules/
+whoami_*
+copilot_dump_*

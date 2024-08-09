@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import json
 import logging
 import os
@@ -5,11 +7,16 @@ import shutil
 
 from powerpwn.cli.const import LOGGER_NAME
 from powerpwn.common.cache.token_cache import TokenCache
+from powerpwn.copilot.dump.dump import Dump
 from powerpwn.copilot.enums.copilot_scenario_enum import CopilotScenarioEnum
 from powerpwn.copilot.enums.verbose_enum import VerboseEnum
+from powerpwn.copilot.gui.gui import Gui as CopilotGui
 from powerpwn.copilot.interactive_chat.interactive_chat import InteractiveChat
 from powerpwn.copilot.models.chat_argument import ChatArguments
 from powerpwn.copilot.spearphishing.automated_spear_phisher import AutomatedSpearPhisher
+from powerpwn.copilot.whoami.whoami import WhoAmI
+from powerpwn.copilot_studio.modules.deep_scan import DeepScan
+from powerpwn.copilot_studio.modules.enum import Enum
 from powerpwn.nocodemalware.enums.code_exec_type_enum import CodeExecTypeEnum
 from powerpwn.nocodemalware.enums.command_to_run_enum import CommandToRunEnum
 from powerpwn.nocodemalware.malware_runner import MalwareRunner
@@ -171,6 +178,10 @@ def run_phishing_command(args):
 
 
 def run_copilot_chat_command(args):
+    if args.copilot_subcommand == "gui":
+        CopilotGui().run(args.directory)
+        return
+
     parsed_args = ChatArguments(
         user=args.user,
         password=args.password,
@@ -186,5 +197,31 @@ def run_copilot_chat_command(args):
         spear = AutomatedSpearPhisher(parsed_args)
         spear.phish()
         return
+    elif args.copilot_subcommand == "whoami":
+        whoami = WhoAmI(parsed_args)
+        output_dir = whoami.execute()
+        if args.gui:
+            CopilotGui().run(output_dir)
+        return
+
+    elif args.copilot_subcommand == "dump":
+        dump = Dump(parsed_args, args.directory)
+        output_dir = dump.run()
+        if args.gui:
+            CopilotGui().run(output_dir)
+        return
 
     raise NotImplementedError(f"Copilot {args.copilot_subcommand} subcommand has not been implemented yet.")
+
+
+def run_copilot_studio_command(args):
+    # copilot_studio_main.main(args)
+
+    if args.copilot_studio_subcommand == "deep-scan":
+        DeepScan(args)
+        return
+    elif args.copilot_studio_subcommand == "enum":
+        Enum(args)
+        return
+
+    raise NotImplementedError("Copilot studio command has not been implemented yet.")
