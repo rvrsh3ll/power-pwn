@@ -7,10 +7,12 @@ from powerpwn.cli.const import LOGGER_NAME
 from powerpwn.cli.runners import (
     run_backdoor_flow_command,
     run_copilot_chat_command,
+    run_copilot_studio_command,
     run_dump_command,
     run_gui_command,
     run_nocodemalware_command,
     run_phishing_command,
+    run_powerpages_command,
     run_recon_command,
 )
 
@@ -20,7 +22,7 @@ logger = logging.getLogger(LOGGER_NAME)
 def main():
     print("\n\n------------------------------------------------------------")
     tprint("powerpwn")
-    print("t2`24 edition\n\n")
+    print("Hacker Summer Camp 2024 edition\n\n")
     print("------------------------------------------------------------\n\n")
 
     args = parse_arguments()
@@ -49,6 +51,10 @@ def main():
         run_phishing_command(args)
     elif command == "copilot":
         run_copilot_chat_command(args)
+    elif command == "copilot-studio-hunter":
+        run_copilot_studio_command(args)
+    elif command == "powerpages":
+        run_powerpages_command(args)
     else:
         logger.info("Run `powerpwn --help` for available commands.")
 
